@@ -65,7 +65,6 @@ clean_data["Salary"] = clean_data["Salary"].fillna(clean_data["Salary"].median()
 print(clean_data)
 
 clean_data["Hire Date"] = pd.to_datetime(clean_data["Hire Date"], errors="coerce")
-clean_data["Hire Date"] = clean_data["Hire Date"].fillna(clean_data["Hire Date"].min())
 print(clean_data)
 
 clean_data["Name"] = clean_data["Name"].str.strip().str.upper()
