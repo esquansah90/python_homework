@@ -1,0 +1,3 @@
+## Task 6: Challenges
+
+I was able to easily identify the XPath and retrieve the 10 list items. However, I had difficulty extracting the links for each vulnerability. I realized that the href attribute was located inside the <a> element rather than the <li> element. I resolved this by finding the <a> element within each list item and then using get_attribute("href") to retrieve the link.
