@@ -1,0 +1,10 @@
+##Task 5
+
+**Restricted Sections**
+Wikipedia's robots.txt restricts crawlers from accessing several areas, including /w/, /api/, /trap/, and /wiki/Special: and its localized versions. It also restricts many administrative and discussion pages, including pages involving deletion discussions, copyright problems, arbitration, spam, and other administrative activities. Some restrictions differ across Wikipedia's various language versions.
+
+**Special Rules for User Agents**
+Wikipedia has special rules for certain user agents. For example, MJ12bot, Mediapartners-Google*, wget, HTTrack, WebReaper, Teleport, WebZIP, and several other crawlers are completely disallowed. SemrushBot is not completely blocked but is instructed to use a five-second crawl delay. For general crawlers (User-agent: *), Wikipedia restricts dynamically generated and administrative areas while providing specific exceptions for certain API resources.
+
+**Reflection**
+Websites use robots.txt to communicate rules about which areas automated crawlers should or should not access. These rules can help reduce excessive requests, protect administrative or sensitive areas from indexing, and manage how automated tools interact with a website. Following robots.txt is an important part of ethical web scraping because it respects the site's stated crawling rules and helps avoid placing unnecessary strain on its servers.
