@@ -1,19 +1,28 @@
 # Task 3
+
 import pandas as pd
 import json
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
 
-driver = webdriver.Chrome()
-driver.get("https://durhamcounty.bibliocommons.com/v2/search?query=learning%20spanish&searchType=smart")
+driver = webdriver.Chrome(
+    service=ChromeService(ChromeDriverManager().install())
+)
+
+driver.get(
+    "https://durhamcounty.bibliocommons.com/v2/search?query=learning%20spanish&searchType=smart"
+)
 
 results = []
 
 books = driver.find_elements(
-    By.CSS_SELECTOR,
-    "li.row.cp-search-result-item"
+    By.XPATH,
+    "//li[contains(@class, 'row') and contains(@class, 'cp-search-result-item')]"
 )
+
 print(len(books))
 
 for book in books:
@@ -35,20 +44,22 @@ for book in books:
     for author in author_elements:
         author_names.append(author.text)
 
+
     author_text = ";".join(author_names)
 
     format_year_element = book.find_element(
-    By.CSS_SELECTOR,
-    "span.display-info"
-)
+        By.CSS_SELECTOR,
+        "span.display-info"
+    )
 
     format_year = format_year_element.text
 
+   
     book_data = {
-    "Title": title,
-    "Author": author_text,
-    "Format-Year": format_year
-}
+        "Title": title,
+        "Author": author_text,
+        "Format-Year": format_year
+    }
 
     results.append(book_data)
 
@@ -58,9 +69,21 @@ print(df)
 
 # Task 4
 
-df.to_csv("get_books.csv", index=False)
+df.to_csv(
+    "get_books.csv",
+    index=False
+)
 
-with open("get_books.json", "w", encoding="utf-8") as file:
-    json.dump(results, file, indent=4, ensure_ascii=False)
-    
+with open(
+    "get_books.json",
+    "w",
+    encoding="utf-8"
+) as file:
+    json.dump(
+        results,
+        file,
+        indent=4,
+        ensure_ascii=False
+    )
+
 driver.quit()
