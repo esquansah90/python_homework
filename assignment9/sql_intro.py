@@ -133,6 +133,7 @@ def add_subscription(
 
 try:
     conn = sqlite3.connect("../db/magazines.db")
+    conn.execute("PRAGMA foreign_keys = 1")
     print("Database connected successfully.")
 
     cursor = conn.cursor()
@@ -168,7 +169,8 @@ try:
         magazine_id INTEGER NOT NULL,
         expiration_date TEXT NOT NULL,
         FOREIGN KEY (subscriber_id) REFERENCES subscribers(subscriber_id),
-        FOREIGN KEY (magazine_id) REFERENCES magazines(magazine_id)
+        FOREIGN KEY (magazine_id) REFERENCES magazines(magazine_id),
+        UNIQUE (subscriber_id, magazine_id)
     )
     """)
     print("Tables created successfully.")
